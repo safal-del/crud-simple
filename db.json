@@ -1,0 +1,53 @@
+{
+  "user": [
+    {
+      "name": "dada",
+      "email": "dada",
+      "contact": "dff",
+      "address": "aaa",
+      "id": 6
+    },
+    {
+      "name": "dada",
+      "email": "dada",
+      "contact": "dff",
+      "address": "aaa",
+      "id": 7
+    },
+    {
+      "name": "ram",
+      "email": "sada@gmail.com",
+      "contact": "saaa",
+      "address": "fagfffa",
+      "id": 8
+    },
+    {
+      "name": "a",
+      "email": "a",
+      "contact": "a",
+      "address": "a",
+      "id": 9
+    },
+    {
+      "name": "safal",
+      "email": "carkeysafal21@gmail.com",
+      "contact": "985492",
+      "address": "dhapakhel",
+      "id": 10
+    },
+    {
+      "name": "safal",
+      "email": "carkeysafal21@gmail.com",
+      "contact": "985492",
+      "address": "dhapakhel",
+      "id": 11
+    },
+    {
+      "name": "hello",
+      "email": "hello@gmail.com",
+      "contact": "9865432",
+      "address": "nagdaha",
+      "id": 12
+    }
+  ]
+}
