@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadUsers,DelUser } from '../redux/action';
+import { loadUsers,Userdelete,Edituser,Getindex } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
+import "./Home.css"
 
 
 
@@ -18,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
 //   }
+
 // const rows = [
 //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
 //   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
@@ -33,7 +35,14 @@ const Home = () => {
 
   return state.data.users
  })
- console.log(select);
+  const user = useSelector((state)=>{ 
+    return state.data.user
+  })
+  const [state, setState] = useState(false);
+
+console.log(user);  
+console.log(select);
+
  const dispatch = useDispatch();
  const navigate = useNavigate();
 //  const historya = useHistory();
@@ -43,26 +52,92 @@ const Home = () => {
 
  },[])
 
-let datas = select.map(function(items){
-   return (<div style={{display:"flex"}}>
-           <p>{items.name}</p>
-           <p>{items.address}</p>
-           <p>{items.email}</p>
-           <p>{items.contact}</p>
-           <button onClick={()=>dispatch(DelUser(items.id))}>del</button>
-           <button onClick={()=>navigate(`/edituser${items.id}`)}>Edit</button>
+ function Navigatetoadduser(){
+    navigate("/adduser")
+ }
+ function Navigatetoedituser(id){
+   dispatch(Getindex(id));
+  navigate("/edituser");
+}
 
-   </div>)
+
+
+
+
+
+
+  
+
+  // 
+
+
+
+
+   
+ 
+
+let datas = select.map(function(items){
+   return ( <tr>
+    <td>{items.name}</td>
+    <td>{items.email}</td>
+    <td>{items.address}</td>
+    <td>{items.salary}</td>
+    <td>{items.contact}</td>
+    <td><button  className='rounded-lg p-1 pl-2 pr-2 bg-primarycolor hover:bg-green-600 text-white' onClick={()=>Navigatetoedituser(items.id)}>edit</button></td>
+    <td><button  className='rounded-lg p-1 pl-2 pr-2 bg-redcolor hover:bg-red-900 text-white' onClick={()=> Userdelete(items.id)}>delete</button></td>
+  </tr>)
 })
+
 
   return (
     <div>Home
-        <div>
-          <button onClick={()=>navigate("/adduser")}>Add user</button>
-          {datas}
-          
+         <div className='h-[100vh] bg-gray-200'>
+      <div className='tablediv flex justify-center'>
+      <table className=' text-center w-full'>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Salary</th>
+          <th>Contact</th>
+          <th>
+            <button onClick={()=>setState((prevstate)=>!prevstate)}>sortby {state? "^" : "▼"}</button>
+           {/* {state ?  <div className='z-20 block absolute bg-gray-200 w-32 h-32 ml-5 mt-3'>
+              <button onClick={sortAccending} className='mt-4 text-l font-200'>accending</button><br/>
+              <button className='mt-2' onClick={SortDecendingOrder} >decending</button><br/>
+              <button onClick={Sortsalary} className='mt-2'>salary  </button>
 
-        </div>
+            </div> : null}  */}
+            
+
+
+
+
+          </th>
+      
+        </tr>
+        {datas}
+
+      </table>
+      </div>
+{/* <ToastContainer
+position="top-center"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/> */}
+     
+ 
+    </div>
+    <div><button className='text-black' onClick={Navigatetoadduser}>navigate</button></div>
+    <div><button className='text-black' onClick={Navigatetoedituser}>edit</button></div>
+    {/* <div><button className='text-black' onClick={()=> dispatch(Edituser())}>check</button></div> */}
     </div>
   )
 }
